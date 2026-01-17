@@ -111,11 +111,12 @@ class GameMap:
         self.spawn_point = self._find_spawn_point()
 
     def _find_spawn_point(self):
-        """Find a good spawn point for the player"""
-        # Look for entrance tile first
+        """Find a good spawn point for the player - in front of Goggins"""
+        # Look for trainer (Goggins) tile and spawn in front of him
         for y, row in enumerate(self.tiles):
             for x, tile in enumerate(row):
-                if tile.type == TILE_ENTRANCE:
+                if tile.type == TILE_TRAINER:
+                    # Spawn one tile below the trainer
                     return (tile.rect.centerx, tile.rect.centery + TILE_SIZE)
 
         # Fallback: find first floor tile
