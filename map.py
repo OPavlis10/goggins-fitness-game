@@ -116,16 +116,13 @@ class GameMap:
         for y, row in enumerate(self.tiles):
             for x, tile in enumerate(row):
                 if tile.type == TILE_TRAINER:
-                    # Spawn one tile below the trainer
-                    return (tile.rect.centerx, tile.rect.centery + TILE_SIZE)
+                    # Spawn two tiles below the trainer (to be clearly in front)
+                    spawn_x = tile.rect.centerx
+                    spawn_y = tile.rect.centery + (TILE_SIZE * 2)
+                    return (spawn_x, spawn_y)
 
-        # Fallback: find first floor tile
-        for y, row in enumerate(self.tiles):
-            for x, tile in enumerate(row):
-                if tile.walkable:
-                    return (tile.rect.centerx, tile.rect.centery)
-
-        return (TILE_SIZE * 2, TILE_SIZE * 2)
+        # Fallback: spawn in center of gym area (grid 12, 21)
+        return (12 * TILE_SIZE + TILE_SIZE // 2, 21 * TILE_SIZE + TILE_SIZE // 2)
 
     def get_tile(self, grid_x, grid_y):
         """Get tile at grid coordinates"""
