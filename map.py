@@ -118,7 +118,6 @@ class GameMap:
         spawn_grid_y = 21
         spawn_x = spawn_grid_x * TILE_SIZE + TILE_SIZE // 2
         spawn_y = spawn_grid_y * TILE_SIZE + TILE_SIZE // 2
-        print(f"Spawn point: grid ({spawn_grid_x}, {spawn_grid_y}) -> pixels ({spawn_x}, {spawn_y})")
         return (spawn_x, spawn_y)
 
     def get_tile(self, grid_x, grid_y):
