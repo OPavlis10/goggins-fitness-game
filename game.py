@@ -138,7 +138,7 @@ class Game:
         self.game_map = GameMap(self.sprites)
         spawn = self.game_map.spawn_point
         self.player = Player(spawn[0], spawn[1], self.sprites)
-        self.camera = Camera(self.game_map.pixel_width, self.game_map.pixel_height)
+        self.camera = Camera(self.game_map.pixel_width, self.game_map.pixel_height, spawn[0], spawn[1])
 
         # Create NPCs (more for bigger map with pool)
         self.npc_manager = NPCManager(self.sprites, self.game_map, count=9)
@@ -158,7 +158,7 @@ class Game:
         self.game_map = GameMap(self.sprites)
         spawn = self.game_map.spawn_point
         self.player = Player(spawn[0], spawn[1], self.sprites)
-        self.camera = Camera(self.game_map.pixel_width, self.game_map.pixel_height)
+        self.camera = Camera(self.game_map.pixel_width, self.game_map.pixel_height, spawn[0], spawn[1])
 
         # Create NPCs (more for bigger map with pool)
         self.npc_manager = NPCManager(self.sprites, self.game_map, count=9)

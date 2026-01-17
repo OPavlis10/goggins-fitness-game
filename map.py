@@ -112,17 +112,14 @@ class GameMap:
 
     def _find_spawn_point(self):
         """Find a good spawn point for the player - in front of Goggins"""
-        # Look for trainer (Goggins) tile and spawn in front of him
-        for y, row in enumerate(self.tiles):
-            for x, tile in enumerate(row):
-                if tile.type == TILE_TRAINER:
-                    # Spawn two tiles below the trainer (to be clearly in front)
-                    spawn_x = tile.rect.centerx
-                    spawn_y = tile.rect.centery + (TILE_SIZE * 2)
-                    return (spawn_x, spawn_y)
-
-        # Fallback: spawn in center of gym area (grid 12, 21)
-        return (12 * TILE_SIZE + TILE_SIZE // 2, 21 * TILE_SIZE + TILE_SIZE // 2)
+        # Goggins is at grid position (12, 19) in the layout
+        # Spawn player at grid (12, 21) - two tiles below Goggins
+        spawn_grid_x = 12
+        spawn_grid_y = 21
+        spawn_x = spawn_grid_x * TILE_SIZE + TILE_SIZE // 2
+        spawn_y = spawn_grid_y * TILE_SIZE + TILE_SIZE // 2
+        print(f"Spawn point: grid ({spawn_grid_x}, {spawn_grid_y}) -> pixels ({spawn_x}, {spawn_y})")
+        return (spawn_x, spawn_y)
 
     def get_tile(self, grid_x, grid_y):
         """Get tile at grid coordinates"""

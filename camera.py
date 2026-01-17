@@ -8,11 +8,13 @@ from constants import *
 class Camera:
     """Camera that follows the player and handles viewport"""
 
-    def __init__(self, map_width, map_height):
-        self.offset_x = 0
-        self.offset_y = 0
+    def __init__(self, map_width, map_height, start_x=0, start_y=0):
         self.map_width = map_width
         self.map_height = map_height
+
+        # Initialize camera centered on start position
+        self.offset_x = max(0, min(start_x - WINDOW_WIDTH // 2, map_width - WINDOW_WIDTH))
+        self.offset_y = max(0, min(start_y - WINDOW_HEIGHT // 2, map_height - WINDOW_HEIGHT))
 
         # Smoothing factor (0 = instant, 1 = no movement)
         self.smoothing = 0.1
