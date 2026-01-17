@@ -15,6 +15,7 @@ Features:
 
 Controls:
 - WASD/Arrow Keys: Move
+- SHIFT: Sprint
 - E: Interact with equipment
 - I: Open inventory
 - TAB: View IRL quests
@@ -25,6 +26,7 @@ Requires: pygame (pip install pygame)
 """
 
 import sys
+import asyncio
 
 def check_dependencies():
     """Check if required dependencies are installed"""
@@ -36,7 +38,7 @@ def check_dependencies():
         print("Install it with: pip install pygame")
         return False
 
-def main():
+async def main():
     """Main entry point"""
     if not check_dependencies():
         sys.exit(1)
@@ -47,7 +49,7 @@ def main():
     print("Stay hard!")
 
     game = Game()
-    game.run()
+    await game.run()
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

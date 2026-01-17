@@ -3,6 +3,7 @@ Main Game class - ties all components together
 """
 import pygame
 import sys
+import asyncio
 from constants import *
 from sprites import SpriteGenerator
 from map import GameMap
@@ -74,13 +75,14 @@ class Game:
         else:
             self.menu_options = ['New Game', 'Quit']
 
-    def run(self):
+    async def run(self):
         """Main game loop"""
         while self.running:
             self.dt = self.clock.tick(FPS) / 1000.0  # Convert to seconds
             self.handle_events()
             self.update()
             self.draw()
+            await asyncio.sleep(0)  # Required for pygbag web compatibility
 
         self.quit()
 
